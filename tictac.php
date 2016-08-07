@@ -221,8 +221,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $board->playerB = $playerB;
                     $board->display_board($msg);
                     fwrite($file, serialize($board));
+                    fclose($file);
                 }
-                fclose($file);
+                elseif ($commands[0] == 'score') {
+                    $board = unserialize($board);
+                    $board->display_board($msg);
+                    fclose($file);
+                }
                 $data['response_type'] = 'in_channel';
                 $data['text'] = $msg;
                 echo json_encode($data);
