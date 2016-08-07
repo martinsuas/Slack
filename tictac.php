@@ -4,6 +4,10 @@
  * User: Martin
  * Date: 8/4/2016
  *
+ * This code creates a slash command in Slack to play a tic-tac-toe game against other users.
+ * The state of the game is stored and saved in one textfile in the server.
+ * Please note, only one channel is supported at the moment. Starting multiple games on different channels
+ * will mess with the textfile. This will be fixed in a later version.
  */
 header('Content-Type: application/json;charset=utf-8');
 
@@ -183,6 +187,9 @@ class Board
     }
 }
 
+/*
+ * Read server input and respond according to the /tictac command used.
+ */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($token == 'QIdZLSlajZgUOL5ixnwlxOj1') {
         $commands = explode(" ", $text);
